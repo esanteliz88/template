@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("USER")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  loginAttempts LoginAttempt[]
+}
+
+model Product {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  description String
+  type        String   // tipo de producto
+  priceUSD    Float    // precio en USD
+  priceCLP    Float    // precio en Pesos Chilenos
+  priceBRL    Float    // precio en Reales Brasileños
+  stock       Int
+  imageUrl    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model LoginAttempt {
+  id          String   @id @default(uuid())
+  ip          String
+  email       String
+  attempts    Int      @default(0)
+  blockedUntil DateTime?
+  lastAttempt DateTime @default(now())
+  user        User?    @relation(fields: [userId], references: [id])
+  userId      String?
+
+  @@unique([ip, email])
+  @@index([email])
+  @@index([ip])
+} 
