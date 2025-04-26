@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import productRoutes from './routes/product.routes.js';
 import authRoutes from './routes/auth.routes.js';
+import ventaRoutes from './routes/venta.routes.js';
 import { limiter, helmetConfig, hppProtection } from './middleware/security.middleware.js';
 import compression from 'compression';
 
@@ -36,6 +37,7 @@ if (process.env.NODE_ENV === 'development') {
 // Routes
 app.use('/api/products', productRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/ventas', ventaRoutes);
 
 // Manejo de errores global
 app.use((err, req, res, next) => {
@@ -61,4 +63,5 @@ app.listen(PORT, () => {
   console.log('- POST /api/auth/login');
   console.log('- GET /api/products');
   console.log('- POST /api/products');
+  console.log('- POST /api/ventas');
 }); 

@@ -22,7 +22,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "^5.10.0",
+    "@prisma/client": "^5.22.0",
+    "@types/node": "^22.15.2",
     "bcryptjs": "^2.4.3",
     "compression": "^1.8.0",
     "cors": "^2.8.5",
@@ -37,6 +38,7 @@
     "redis": "^4.7.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
+    "typescript": "^5.8.3",
     "winston": "^3.17.0",
     "winston-daily-rotate-file": "^5.0.0"
   },
